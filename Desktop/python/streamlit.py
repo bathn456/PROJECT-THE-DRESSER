@@ -341,4 +341,4 @@ if __name__ == "__main__":
 
 # yardımcı ipuçları için kenar çubuğu
 with st.sidebar:
-    st.markdown("### 💡 Daha İyi Kombinler İçin İpuçları")
+    st.markdown("### 💡 Daha İyi Kombinler İçin İpuçları") 
