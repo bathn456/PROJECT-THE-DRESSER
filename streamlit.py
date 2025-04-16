@@ -186,31 +186,31 @@ def parse_response(response_text: str) -> Dict:
 def create_product_card(image_url: str, name: str, brand: str, price: str, product_url: str = None) -> str:
     """Her bir ürün için güzel bir kart tasarlayalım."""
     try:
-        # Her kart için benzersiz bir ID oluşturalım
+        # her kart için benzersiz bir ID oluşturalım
         card_id = f"card_{abs(hash(f'{brand}{name}{price}'))}"
         
-        # Ürün linkini temizleyip düzenleyelim
+        # ürün linkini temizleyip düzenleyelim
         if product_url and product_url != "https://www.example.com/product-page":
             product_url = product_url.strip()
             if not product_url.startswith(('http://', 'https://')):
                 product_url = 'https://' + product_url
             
-            # Sadece güvenilir e-ticaret sitelerinden ürün gösterelim
+            # sadece güvenilir e-ticaret sitelerinden ürün gösterelim
             if not any(domain in product_url for domain in ['hepsiburada.com', 'n11.com', 'gittigidiyor.com', 'amazon.com.tr']):
                 search_query = f"{brand} {name}".replace(' ', '+')
                 product_url = f"https://www.hepsiburada.com/ara?q={search_query}"
         else:
-            # Eğer ürün linki yoksa, arama sonuçlarına yönlendirelim
+            # eğer ürün linki yoksa, arama sonuçlarına yönlendirelim
             search_query = f"{brand} {name}".replace(' ', '+')
             product_url = f"https://www.hepsiburada.com/ara?q={search_query}"
         
-        # Ürün görselini kontrol edelim
+        # ürün görselini kontrol edelim
         if image_url and image_url != "https://www.example.com/product-image.jpg":
             image_url = image_url.strip()
             if not image_url.startswith(('http://', 'https://')):
                 image_url = 'https://' + image_url
         else:
-            # Görsel yoksa placeholder gösterelim
+            # görsel yoksa placeholder gösterelim
             image_url = "https://via.placeholder.com/300x300?text=Görsel+Bulunamadı"
         
         return f"""
